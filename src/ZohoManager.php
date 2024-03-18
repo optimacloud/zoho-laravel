@@ -1,13 +1,13 @@
 <?php
 
-namespace Asciisd\Zoho;
+namespace Optimacloud\Zoho;
 
-use Asciisd\Zoho\Concerns\CriteriaBuilder;
-use Asciisd\Zoho\Concerns\ManagesActions;
-use Asciisd\Zoho\Concerns\ManagesBulkActions;
-use Asciisd\Zoho\Concerns\ManagesModules;
-use Asciisd\Zoho\Concerns\ManagesRecords;
-use Asciisd\Zoho\Concerns\ManagesTags;
+use Optimacloud\Zoho\Concerns\CriteriaBuilder;
+use Optimacloud\Zoho\Concerns\ManagesActions;
+use Optimacloud\Zoho\Concerns\ManagesBulkActions;
+use Optimacloud\Zoho\Concerns\ManagesModules;
+use Optimacloud\Zoho\Concerns\ManagesRecords;
+use Optimacloud\Zoho\Concerns\ManagesTags;
 use com\zoho\crm\api\exception\SDKException;
 
 class ZohoManager

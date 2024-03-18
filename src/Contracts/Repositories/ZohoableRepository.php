@@ -1,6 +1,6 @@
 <?php
 
-namespace Asciisd\Zoho\Contracts\Repositories;
+namespace Optimacloud\Zoho\Contracts\Repositories;
 
 interface ZohoableRepository
 {

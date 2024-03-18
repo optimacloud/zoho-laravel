@@ -1,9 +1,9 @@
 <?php
 
-namespace Asciisd\Zoho\Tests\Integration;
+namespace Optimacloud\Zoho\Tests\Integration;
 
-use Asciisd\Zoho\Tests\TestCase;
-use Asciisd\Zoho\Tests\Fixture\Models\User;
+use Optimacloud\Zoho\Tests\TestCase;
+use Optimacloud\Zoho\Tests\Fixture\Models\User;
 
 abstract class IntegrationTestCase extends TestCase
 {
@@ -17,7 +17,7 @@ abstract class IntegrationTestCase extends TestCase
         return new User([
             'first_name' => 'Create',
             'last_name'  => 'From User',
-            'email'      => 'user@asciisd.com',
+            'email'      => 'user@optimacloud.com',
             'phone'      => '555555555551',
         ]);
     }

@@ -1,13 +1,18 @@
 {
-    "name": "asciisd/zoho-v3",
+    "name": "optimacloud/zoho-laravel",
     "description": "Laravel Zoho API V3 Package",
-    "keywords": ["asciisd", "laravel", "zoho", "crm"],
-    "homepage": "https://github.com/asciisd/zoho-v3",
+    "keywords": ["optimacloud", "laravel", "zoho", "crm"],
+    "homepage": "https://github.com/optimacloud/zoho-laravel",
     "license": "MIT",
     "authors": [
         {
             "name": "aemaddin",
             "email": "aemaddin@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Lee",
+            "email": "lee@optimacloudtechnology.com",
             "role": "Developer"
         }
     ],
@@ -24,13 +29,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Asciisd\\Zoho\\": "src",
-            "Asciisd\\Zoho\\Database\\Factories\\": "database/factories"
+            "Optimacloud\\Zoho\\": "src",
+            "Optimacloud\\Zoho\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Asciisd\\Zoho\\Tests\\": "tests"
+            "Optimacloud\\Zoho\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -46,10 +51,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Asciisd\\Zoho\\ZohoServiceProvider"
+                "Optimacloud\\Zoho\\ZohoServiceProvider"
             ],
             "aliases": {
-                "Zoho": "Asciisd\\Zoho\\Facades\\Zoho"
+                "Zoho": "Optimacloud\\Zoho\\Facades\\Zoho"
             }
         }
     },

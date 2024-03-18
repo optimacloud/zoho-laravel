@@ -1,9 +1,9 @@
 <?php
 
-namespace Asciisd\Zoho\Http\Controllers;
+namespace Optimacloud\Zoho\Http\Controllers;
 
-use Asciisd\Zoho\Http\Requests\ZohoRedirectRequest;
-use Asciisd\Zoho\Zoho;
+use Optimacloud\Zoho\Http\Requests\ZohoRedirectRequest;
+use Optimacloud\Zoho\Zoho;
 use com\zoho\crm\api\exception\SDKException;
 use Illuminate\Routing\Controller;
 

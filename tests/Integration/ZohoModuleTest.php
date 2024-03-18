@@ -1,8 +1,8 @@
 <?php
 
-namespace Asciisd\Zoho\Tests\Integration;
+namespace Optimacloud\Zoho\Tests\Integration;
 
-use Asciisd\Zoho\ZohoManager;
+use Optimacloud\Zoho\ZohoManager;
 use com\zoho\crm\api\record\Leads;
 use com\zoho\crm\api\record\Record;
 use com\zoho\crm\api\modules\Module;
@@ -99,7 +99,7 @@ class ZohoModuleTest extends IntegrationTestCase
         $records = ZohoManager::make(self::TESTING_MODULE)->create([
             'First_Name' => 'Can',
             'Last_Name'  => 'Create',
-            'Email'      => 'can_create@asciisd.com',
+            'Email'      => 'can_create@optimacloud.com',
             'Phone'      => '555555555552',
         ]);
 
@@ -115,7 +115,7 @@ class ZohoModuleTest extends IntegrationTestCase
         $records = ZohoManager::make(self::TESTING_MODULE)->create([
             'First_Name' => 'Can',
             'Last_Name'  => 'Update',
-            'Email'      => 'can_update@asciisd.com',
+            'Email'      => 'can_update@optimacloud.com',
             'Phone'      => '555555555552',
         ]);
 
@@ -145,7 +145,7 @@ class ZohoModuleTest extends IntegrationTestCase
         $records = ZohoManager::make(self::TESTING_MODULE)->create([
             'First_Name' => 'Can',
             'Last_Name'  => 'Delete',
-            'Email'      => 'can_delete@asciisd.com',
+            'Email'      => 'can_delete@optimacloud.com',
             'Phone'      => '555555555553',
         ]);
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Asciisd\Zoho;
+namespace Optimacloud\Zoho;
 
 use com\zoho\api\authenticator\OAuthBuilder;
 use com\zoho\api\authenticator\store\FileStore;

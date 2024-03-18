@@ -1,10 +1,10 @@
-# Laravel Zoho API V3 Package
+# Zoho Laravel API V6 Package
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/asciisd/zoho-v3.svg?style=flat-square)](https://packagist.org/packages/asciisd/zoho-v3)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/asciisd/zoho-v3/Check%20&%20fix%20styling?label=code%20style)](https://github.com/asciisd/zoho-v3/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/asciisd/zoho-v3.svg?style=flat-square)](https://packagist.org/packages/asciisd/zoho-v3)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/optimacloud/zoho-laravel.svg?style=flat-square)](https://packagist.org/packages/optimacloud/zoho-laravel)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/optimacloud/zoho-laravel/Check%20&%20fix%20styling?label=code%20style)](https://github.com/optimacloud/zoho-laravel/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/optimacloud/zoho-laravel.svg?style=flat-square)](https://packagist.org/packages/optimacloud/zoho-laravel)
 
-This package used to integrate with the new Zoho V3 Api CRM
+This package used to integrate with the Zoho V6 Api CRM
 
 ## Requirements
 
@@ -30,12 +30,12 @@ your app:
 You can install the package via `composer require`:
 
 ```bash
-composer require asciisd/zoho-v3
+composer require optimacloud/zoho-laravel
 ```
 After installing the package you can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="zoho-v3-config"
+php artisan vendor:publish --tag="zoho-laravel-config"
 ```
 
 after that you need to create the OAuth client and get the credentials from Zoho by run the following command:
@@ -69,13 +69,13 @@ php artisan zoho:grant
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="zoho-v3-config"
+php artisan vendor:publish --tag="zoho-laravel-config"
 ```
 
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --tag="zoho-v3-migrations"
+php artisan vendor:publish --tag="zoho-laravel-migrations"
 php artisan migrate
 ```
 
@@ -91,24 +91,24 @@ So that will override config settings.
 
 ## Usage
 
-Imagine that you need to get all modules from Zoho system.
+To retrieve all modules from Zoho.
 
 ```php
-use Asciisd\Zoho\ZohoManager;
+use Optimacloud\Zoho\ZohoManager;
 
 $response = ZohoManager::make(self::TESTING_MODULE);
 $modules  = $response->getAllModules();
 ```
 
-## Model Can be used like this:-
+## Models can be used like this:-
 
 Available only starting from **v1.1.0**
 
 add `Zohoable` as extended class like this:-
 
 ```php
-use Asciisd\Zoho\Zohoable;
-use Asciisd\Zoho\ZohoManager;
+use Optimacloud\Zoho\Zohoable;
+use Optimacloud\Zoho\ZohoManager;
 
 class Invoice extends Zohoable {
     
@@ -126,7 +126,6 @@ class Invoice extends Zohoable {
 
     public function zohoMandatoryFields() {
         // you should return array of mandatory fields to create module from this model
-        // EX:
         return ['Base_Currency' => $this->currency];
     }
 }
@@ -162,7 +161,7 @@ the functions in `Zohoable`. Use the CRUD functions below if you do not intend t
 #### READ
 
 ```php
-use Asciisd\Zoho\ZohoManager;
+use Optimacloud\Zoho\ZohoManager;
 
 // we can now deal with leads module
 $leads = ZohoManager::useModule('Leads');
@@ -199,7 +198,7 @@ $response = $leads->update($record);
 $response = $leads->create([
     'First_Name' => 'Amr',
     'Last_Name' => 'Emad',
-    'Email' => 'test@asciisd.com',
+    'Email' => 'test@optimacloud.com',
     'Phone' => '012345678910',
 ]);
 
@@ -218,7 +217,7 @@ $lead = $leads->delete('3582074000002383003');
 ##### Word
 
 ```php
-use Asciisd\Zoho\ZohoManager;
+use Optimacloud\Zoho\ZohoManager;
 
 $records = ZohoManager::useModule('Leads')->searchRecordsByWord('word to be searched');
 $first_record = $records[0];
@@ -227,7 +226,7 @@ $first_record = $records[0];
 ##### Phone
 
 ```php
-use Asciisd\Zoho\ZohoManager;
+use Optimacloud\Zoho\ZohoManager;
 
 $records = ZohoManager::useModule('Leads')->searchRecordsByPhone('12345678910');
 $first_record = $records[0];
@@ -236,16 +235,16 @@ $first_record = $records[0];
 ##### Email
 
 ```php
-use Asciisd\Zoho\ZohoManager;
+use Optimacloud\Zoho\ZohoManager;
 
-$records = ZohoManager::make('Leads')->searchRecordsByEmail('nobody@asciisd.com');
+$records = ZohoManager::make('Leads')->searchRecordsByEmail('nobody@optimacloud.com');
 $first_record = $records[0];
 ```
 
 ##### Criteria
 
 ```php
-use Asciisd\Zoho\ZohoManager;
+use Optimacloud\Zoho\ZohoManager;
 
 $records = ZohoManager::make('Leads')->searchRecordsByCriteria('(City:equals:NY) and (State:equals:Alden)')->get();
 $first_record = $records[0];
@@ -254,7 +253,7 @@ $first_record = $records[0];
 ##### Custom
 
 ```php
-use Asciisd\Zoho\ZohoManager;
+use Optimacloud\Zoho\ZohoManager;
 
 $records = ZohoManager::make('Leads')
                     ->where('City', 'NY')
@@ -285,7 +284,7 @@ ZOHO_API_BASE_URL=www.zohoapis.com.cn
 ## Support
 
 Contact:<br>
-[asciisd.com](https://asciisd.com)<br>
+[optimacloud.com](https://optimacloud.com)<br>
 aemad@asciisd.com<br>
 +2-010-1144-1444
 
@@ -295,7 +294,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Contributing
 
-Please see [CONTRIBUTING](https://github.com/asciisd/.github/blob/main/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](https://github.com/optimacloud/.github/blob/main/CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Asciisd\Zoho\Commands;
+namespace Optimacloud\Zoho\Commands;
 
-use Asciisd\Zoho\Zoho;
+use Optimacloud\Zoho\Zoho;
 use com\zoho\crm\api\exception\SDKException;
 use Illuminate\Console\Command;
 

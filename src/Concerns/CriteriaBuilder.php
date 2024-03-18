@@ -1,8 +1,8 @@
 <?php
 
-namespace Asciisd\Zoho\Concerns;
+namespace Optimacloud\Zoho\Concerns;
 
-use Asciisd\Zoho\ZohoManager;
+use Optimacloud\Zoho\ZohoManager;
 
 trait CriteriaBuilder
 {

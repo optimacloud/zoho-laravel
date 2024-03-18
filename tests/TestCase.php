@@ -1,10 +1,10 @@
 <?php
 
-namespace Asciisd\Zoho\Tests;
+namespace Optimacloud\Zoho\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
-use Asciisd\Zoho\ZohoServiceProvider;
+use Optimacloud\Zoho\ZohoServiceProvider;
 
 class TestCase extends OrchestraTestCase
 {
@@ -13,7 +13,7 @@ class TestCase extends OrchestraTestCase
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Asciisd\\Zoho\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'Optimacloud\\Zoho\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 
@@ -31,7 +31,7 @@ class TestCase extends OrchestraTestCase
         config()->set('database.default', 'testing');
 
         /*
-        $migration = include __DIR__.'/../database/migrations/create_zoho-v3_table.php.stub';
+        $migration = include __DIR__.'/../database/migrations/create_zoho-laravel_table.php.stub';
         $migration->up();
         */
     }

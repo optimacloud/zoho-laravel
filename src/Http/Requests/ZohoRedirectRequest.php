@@ -1,6 +1,6 @@
 <?php
 
-namespace Asciisd\Zoho\Http\Requests;
+namespace Optimacloud\Zoho\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

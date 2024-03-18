@@ -1,5 +1,5 @@
 <?php
-// config for Asciisd/Zoho
+// config for Optimacloud/Zoho
 
 return [
     /*
@@ -15,7 +15,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Accounts url 
+    | Accounts url
     |--------------------------------------------------------------------------
     |
     | Zoho's Accounts url for OAuth process
@@ -32,7 +32,7 @@ return [
     |
     */
     'api_base_url' => env('ZOHO_API_BASE_URL', "www.zohoapis.com"),
-    
+
     /*
     |--------------------------------------------------------------------------
     | Client Secret

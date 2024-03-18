@@ -1,10 +1,10 @@
 <?php
 
-namespace Asciisd\Zoho;
+namespace Optimacloud\Zoho;
 
-use Asciisd\Zoho\Commands\ZohoAuthentication;
-use Asciisd\Zoho\Commands\ZohoInstallCommand;
-use Asciisd\Zoho\Commands\ZohoSetupCommand;
+use Optimacloud\Zoho\Commands\ZohoAuthentication;
+use Optimacloud\Zoho\Commands\ZohoInstallCommand;
+use Optimacloud\Zoho\Commands\ZohoSetupCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -18,7 +18,7 @@ class ZohoServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('zoho-v3')
+            ->name('zoho-laravel')
             ->hasCommands(ZohoAuthentication::class, ZohoInstallCommand::class, ZohoSetupCommand::class)
             ->hasConfigFile('zoho')
             ->hasRoute('web')

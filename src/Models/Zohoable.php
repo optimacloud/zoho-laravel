@@ -1,10 +1,10 @@
 <?php
 
-namespace Asciisd\Zoho\Models;
+namespace Optimacloud\Zoho\Models;
 
-use Asciisd\Zoho\Contracts\Repositories\ZohoableRepository;
-use Asciisd\Zoho\Traits\Zohoable as ZohoableModel;
-use Asciisd\Zoho\ZohoManager;
+use Optimacloud\Zoho\Contracts\Repositories\ZohoableRepository;
+use Optimacloud\Zoho\Traits\Zohoable as ZohoableModel;
+use Optimacloud\Zoho\ZohoManager;
 use Illuminate\Database\Eloquent\Model;
 
 abstract class Zohoable extends Model implements ZohoableRepository

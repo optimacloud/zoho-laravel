@@ -1,8 +1,8 @@
 <?php
 
-namespace Asciisd\Zoho\Tests\Integration;
+namespace Optimacloud\Zoho\Tests\Integration;
 
-use Asciisd\Zoho\ZohoManager;
+use Optimacloud\Zoho\ZohoManager;
 use com\zoho\crm\api\record\SuccessResponse;
 
 class ZohoUserTest extends IntegrationTestCase

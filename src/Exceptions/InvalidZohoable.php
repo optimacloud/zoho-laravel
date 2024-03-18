@@ -1,6 +1,6 @@
 <?php
 
-namespace Asciisd\Zoho\Exceptions;
+namespace Optimacloud\Zoho\Exceptions;
 
 use Exception;
 use Illuminate\Database\Eloquent\Model;

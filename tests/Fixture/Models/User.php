@@ -1,11 +1,11 @@
 <?php
 
-namespace Asciisd\Zoho\Tests\Fixture\Models;
+namespace Optimacloud\Zoho\Tests\Fixture\Models;
 
-use Asciisd\Zoho\ZohoManager;
-use Asciisd\Zoho\Traits\Zohoable;
-use Asciisd\Zoho\Models\Zohoable as ZohoableModel;
-use Asciisd\Zoho\Contracts\Repositories\ZohoableRepository;
+use Optimacloud\Zoho\ZohoManager;
+use Optimacloud\Zoho\Traits\Zohoable;
+use Optimacloud\Zoho\Models\Zohoable as ZohoableModel;
+use Optimacloud\Zoho\Contracts\Repositories\ZohoableRepository;
 
 class User extends ZohoableModel implements ZohoableRepository
 {

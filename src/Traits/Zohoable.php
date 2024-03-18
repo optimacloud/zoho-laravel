@@ -1,10 +1,10 @@
 <?php
 
-namespace Asciisd\Zoho\Traits;
+namespace Optimacloud\Zoho\Traits;
 
-use Asciisd\Zoho\Exceptions\InvalidZohoable;
-use Asciisd\Zoho\Models\Zoho as ZohoModel;
-use Asciisd\Zoho\ZohoManager;
+use Optimacloud\Zoho\Exceptions\InvalidZohoable;
+use Optimacloud\Zoho\Models\Zoho as ZohoModel;
+use Optimacloud\Zoho\ZohoManager;
 use com\zoho\crm\api\record\Record;
 use Exception;
 use Illuminate\Database\Eloquent\Relations\MorphOne;

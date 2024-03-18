@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Asciisd\Zoho\Commands;
+namespace Optimacloud\Zoho\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
