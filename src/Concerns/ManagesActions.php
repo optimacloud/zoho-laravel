@@ -13,6 +13,24 @@ use com\zoho\crm\api\record\DeleteRecordsParam;
 
 trait ManagesActions
 {
+    public function upsert(array $uniqueFields = [],array $args = []): SuccessResponse|array
+    {
+        $recordOperations = new RecordOperations($this->module_api_name);
+        $bodyWrapper = new BodyWrapper();
+        $record = new Record();
+
+        foreach ($args as $key => $value) {
+            $record->addKeyValue($key, $value);
+        }
+
+        $bodyWrapper->setData([$record]);
+        $bodyWrapper->setDuplicateCheckFields($uniqueFields);
+
+        return $this->handleActionResponse(
+            $recordOperations->upsertRecords($bodyWrapper)
+        );
+    }
+
     public function create(array $args = []): SuccessResponse|array
     {
         $recordOperations = new RecordOperations($this->module_api_name);
@@ -29,6 +47,7 @@ trait ManagesActions
             $recordOperations->createRecords($bodyWrapper)
         );
     }
+
 
     public function update(Record $record): SuccessResponse|array
     {
@@ -76,9 +95,9 @@ trait ManagesActions
     {
         if ($response != null) {
             if (in_array($response->getStatusCode(), array(204, 304))) {
-                logger()->error($response->getStatusCode() == 204 ? "No Content" : "Not Modified");
-
-                return [];
+                $errorMsg = $response->getStatusCode() == 204 ? "No Content" : "Not Modified";
+                logger()->error($errorMsg);
+                return ['error' => $errorMsg];
             }
 
             if ($response->isExpected()) {
@@ -93,12 +112,15 @@ trait ManagesActions
                 }
 
                 if ($responseHandler instanceof APIException) {
-                    logger()->error($responseHandler->getMessage()->getValue());
+                    $errorMsg = $responseHandler->getMessage()->getValue();
+                    logger()->error($errorMsg);
+                    return ['error' => $errorMsg];
                 }
             }
         }
 
-        return [];
+        return ['error' => 'An unexpected error occurred'];
+
     }
 
     private function handleConvertResponse($response): SuccessfulConvert|array

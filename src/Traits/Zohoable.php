@@ -142,17 +142,18 @@ trait Zohoable
     }
 
     /**
-     * Create a Zoho record for the given model.
-     *
+     * Create or update a record as a Zohoable, requires a unique field name to match
+     * @param  array  $uniqueFields
      * @param  array  $options
      *
      * @return object|array
      * @throws InvalidZohoable
      */
-    public function createAsZohoable(array $options = []): object|array
+    public function createOrUpdateAsZohoable(array $uniqueFields = [],array $options = []): object|array
     {
+
         if ($this->zohoId()) {
-            throw InvalidZohoable::exists($this);
+           return $this->updateZohoable($options);
         }
 
         $options = array_merge($this->zohoMandatoryFields(), $options);
@@ -160,12 +161,16 @@ trait Zohoable
         // Here we will create the Record instance on Zoho and store the ID of the
         // record from Zoho. This ID will correspond with the Zoho record instance
         // and allow us to retrieve records from Zoho later when we need to work.
-        $records = $this->zoho_module->create($options);
+        $result = $this->zoho_module->upsert($uniqueFields,$options);
 
-        $this->createZohoId($records->getDetails()['id']);
+        if (is_array($result) && isset($result['error'])) {
+            // Handle error or provide feedback to user
+            return ['error' => $result['error']];
+        }
 
+        $this->createZohoId($result->getDetails()['id']);
 
-        return $records;
+        return $result;
     }
 
     /**
