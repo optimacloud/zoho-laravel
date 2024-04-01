@@ -12,12 +12,16 @@ use com\zoho\crm\api\record\SearchRecordsParam;
 
 trait ManagesRecords
 {
-    public function getRecord(string $record_id): Record
+    public function getRecord(string $record_id): ?Record
     {
-        return $this->handleRecordResponse(
+        $records = $this->handleRecordResponse(
             (new RecordOperations($this->module_api_name))->getRecord($record_id)
-        )[0];
+        );
+
+        // Check if records are not empty and return the first one, else return null
+        return !empty($records) ? $records[0] : null;
     }
+
 
     /**
      * get the records array of given module api name
@@ -127,7 +131,6 @@ trait ManagesRecords
         if ($response != null) {
             if (in_array($response->getStatusCode(), array(204, 304))) {
                 logger()->error($response->getStatusCode() == 204 ? "No Content" : "Not Modified");
-
                 return [];
             }
 
@@ -144,4 +147,6 @@ trait ManagesRecords
 
         return [];
     }
+
+
 }

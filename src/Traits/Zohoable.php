@@ -167,9 +167,11 @@ trait Zohoable
             // Handle error or provide feedback to user
             return ['error' => $result['error']];
         }
-
-        $this->createZohoId($result->getDetails()['id']);
-
+        $details = $result->getDetails();
+        if(is_array($details) && array_key_exists('id',$details)) {
+            $this->createZohoId($result->getDetails()['id']);
+        }
+        
         return $result;
     }
 

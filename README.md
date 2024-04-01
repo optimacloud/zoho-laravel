@@ -38,7 +38,6 @@ php artisan vendor:publish --tag="zoho-laravel-config"
 ```
 
 after that you need to create the OAuth client and get the credentials from Zoho by run the following command:
-
 ```bash
 php artisan zoho:install
 ```
