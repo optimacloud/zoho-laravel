@@ -2,6 +2,7 @@
 
 namespace Optimacloud\Zoho\Commands;
 
+use Optimacloud\Zoho\Services\ZohoTokenService;
 use Optimacloud\Zoho\Zoho;
 use com\zoho\crm\api\exception\SDKException;
 use Illuminate\Console\Command;
@@ -37,17 +38,19 @@ class ZohoSetupCommand extends Command
 
         if (!$grantToken) {
             $this->error('The Grant Token is required.');
-            $this->info('generate token by visit : https://accounts.zoho.com/developerconsole');
+            $this->info('generate token by visiting : https://accounts.zoho.com/developerconsole');
 
-            return 0;
+            return Command::FAILURE;
         }
 
-        $this->info('Token: '.$grantToken);
 
         Zoho::initialize($grantToken);
 
+        $zohoTokenService = new ZohoTokenService();
+        $zohoTokenService->updateRemoteToken();
+
         $this->info('Zoho CRM has been set up successfully.');
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

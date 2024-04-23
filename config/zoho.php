@@ -101,7 +101,7 @@ return [
     | inside the project.
     |
     */
-    'application_log_file_path' => storage_path('app/zoho/oauth/logs/ZCRMClientLibrary.log'),
+    'application_log_file_path' => 'app/zoho/oauth/logs/ZCRMClientLibrary.log',
 
     /*
     |--------------------------------------------------------------------------
@@ -114,7 +114,34 @@ return [
     | the file here
     |
     */
-    'token_persistence_path' => storage_path('app/zoho/oauth/tokens/zcrm_oauthtokens.txt'),
+    'token_persistence_path' => 'app/zoho/oauth/tokens/zcrm_oauthtokens.txt',
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Auth Files Storage Disk
+    |--------------------------------------------------------------------------
+    |
+    | The Disk to use to store auth files, eg s3 for remote storage
+    |
+    |  When creating the token from the artisan zoho:grant command if a remote disk is set it will be put there.
+    |
+    |  In environments with multiple servers each call to Zoho should start with:-
+    |
+    |  $zohoTokenService = new ZohoTokenService();
+    |  $zohoTokenService->updateLocalToken();
+    |
+    |  This will ensure that the server uses the most recent token retrieved from remote storage.
+    |  Then at the end of the routine the Zoho SDK will have updated the local token with a new expiry timestamp.
+    |  So we must then put the updated token back to remote storage with:-
+    |  $zohoTokenService->updateRemoteToken();
+    |  This will ensure that the remote token is always the latest version
+    |
+    */
+
+
+    'disk' => env('ZOHO_DISK', 'local'),
+
 
     /*
     |--------------------------------------------------------------------------

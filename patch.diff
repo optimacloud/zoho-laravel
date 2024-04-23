@@ -44,7 +44,7 @@ index 2cf1137..6ccec72 100644
 +++ b/CHANGELOG.md
 @@ -1,3 +1,3 @@
  # Changelog
- 
+
 -All notable changes to `zoho-v3` will be documented in this file.
 +All notable changes to `zoho-laravel` will be documented in this file.
 diff --git a/README.md b/README.md
@@ -54,82 +54,82 @@ index 9810ace..0df6c88 100644
 @@ -1,10 +1,10 @@
 -# Laravel Zoho API V3 Package
 +# Zoho Laravel API V6 Package
- 
+
 -[![Latest Version on Packagist](https://img.shields.io/packagist/v/asciisd/zoho-v3.svg?style=flat-square)](https://packagist.org/packages/asciisd/zoho-v3)
 -[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/asciisd/zoho-v3/Check%20&%20fix%20styling?label=code%20style)](https://github.com/asciisd/zoho-v3/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 -[![Total Downloads](https://img.shields.io/packagist/dt/asciisd/zoho-v3.svg?style=flat-square)](https://packagist.org/packages/asciisd/zoho-v3)
 +[![Latest Version on Packagist](https://img.shields.io/packagist/v/optimacloud/zoho-laravel.svg?style=flat-square)](https://packagist.org/packages/optimacloud/zoho-laravel)
 +[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/optimacloud/zoho-laravel/Check%20&%20fix%20styling?label=code%20style)](https://github.com/optimacloud/zoho-laravel/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 +[![Total Downloads](https://img.shields.io/packagist/dt/optimacloud/zoho-laravel.svg?style=flat-square)](https://packagist.org/packages/optimacloud/zoho-laravel)
- 
+
 -This package used to integrate with the new Zoho V3 Api CRM
 +This package used to integrate with the Zoho V6 Api CRM
- 
+
  ## Requirements
- 
+
 @@ -30,12 +30,12 @@ your app:
  You can install the package via `composer require`:
- 
+
  ```bash
 -composer require asciisd/zoho-v3
 +composer require optimacloud/zoho-laravel
  ```
  After installing the package you can publish the config file with:
- 
+
  ```bash
 -php artisan vendor:publish --tag="zoho-v3-config"
 +php artisan vendor:publish --tag="zoho-laravel-config"
  ```
- 
+
  after that you need to create the OAuth client and get the credentials from Zoho by run the following command:
 @@ -69,13 +69,13 @@ php artisan zoho:grant
  You can publish the config file with:
- 
+
  ```bash
 -php artisan vendor:publish --tag="zoho-v3-config"
 +php artisan vendor:publish --tag="zoho-laravel-config"
  ```
- 
+
  You can publish and run the migrations with:
- 
+
  ```bash
 -php artisan vendor:publish --tag="zoho-v3-migrations"
 +php artisan vendor:publish --tag="zoho-laravel-migrations"
  php artisan migrate
  ```
- 
+
 @@ -91,24 +91,24 @@ So that will override config settings.
- 
+
  ## Usage
- 
+
 -Imagine that you need to get all modules from Zoho system.
 +To retrieve all modules from Zoho.
- 
+
  ```php
 -use Asciisd\Zoho\ZohoManager;
 +use Optimacloud\Zoho\ZohoManager;
- 
+
  $response = ZohoManager::make(self::TESTING_MODULE);
  $modules  = $response->getAllModules();
  ```
- 
+
 -## Model Can be used like this:-
 +## Models can be used like this:-
- 
+
  Available only starting from **v1.1.0**
- 
+
  add `Zohoable` as extended class like this:-
- 
+
  ```php
 -use Asciisd\Zoho\Zohoable;
 -use Asciisd\Zoho\ZohoManager;
 +use Optimacloud\Zoho\Zohoable;
 +use Optimacloud\Zoho\ZohoManager;
- 
+
  class Invoice extends Zohoable {
-     
+
 @@ -126,7 +126,6 @@ class Invoice extends Zohoable {
- 
+
      public function zohoMandatoryFields() {
          // you should return array of mandatory fields to create module from this model
 -        // EX:
@@ -138,11 +138,11 @@ index 9810ace..0df6c88 100644
  }
 @@ -162,7 +161,7 @@ the functions in `Zohoable`. Use the CRUD functions below if you do not intend t
  #### READ
- 
+
  ```php
 -use Asciisd\Zoho\ZohoManager;
 +use Optimacloud\Zoho\ZohoManager;
- 
+
  // we can now deal with leads module
  $leads = ZohoManager::useModule('Leads');
 @@ -199,7 +198,7 @@ $response = $leads->update($record);
@@ -153,72 +153,72 @@ index 9810ace..0df6c88 100644
 +    'Email' => 'test@optimacloud.com',
      'Phone' => '012345678910',
  ]);
- 
+
 @@ -218,7 +217,7 @@ $lead = $leads->delete('3582074000002383003');
  ##### Word
- 
+
  ```php
 -use Asciisd\Zoho\ZohoManager;
 +use Optimacloud\Zoho\ZohoManager;
- 
+
  $records = ZohoManager::useModule('Leads')->searchRecordsByWord('word to be searched');
  $first_record = $records[0];
 @@ -227,7 +226,7 @@ $first_record = $records[0];
  ##### Phone
- 
+
  ```php
 -use Asciisd\Zoho\ZohoManager;
 +use Optimacloud\Zoho\ZohoManager;
- 
+
  $records = ZohoManager::useModule('Leads')->searchRecordsByPhone('12345678910');
  $first_record = $records[0];
 @@ -236,16 +235,16 @@ $first_record = $records[0];
  ##### Email
- 
+
  ```php
 -use Asciisd\Zoho\ZohoManager;
 +use Optimacloud\Zoho\ZohoManager;
- 
+
 -$records = ZohoManager::make('Leads')->searchRecordsByEmail('nobody@asciisd.com');
 +$records = ZohoManager::make('Leads')->searchRecordsByEmail('nobody@optimacloud.com');
  $first_record = $records[0];
  ```
- 
+
  ##### Criteria
- 
+
  ```php
 -use Asciisd\Zoho\ZohoManager;
 +use Optimacloud\Zoho\ZohoManager;
- 
+
  $records = ZohoManager::make('Leads')->searchRecordsByCriteria('(City:equals:NY) and (State:equals:Alden)')->get();
  $first_record = $records[0];
 @@ -254,7 +253,7 @@ $first_record = $records[0];
  ##### Custom
- 
+
  ```php
 -use Asciisd\Zoho\ZohoManager;
 +use Optimacloud\Zoho\ZohoManager;
- 
+
  $records = ZohoManager::make('Leads')
                      ->where('City', 'NY')
 @@ -285,7 +284,7 @@ ZOHO_API_BASE_URL=www.zohoapis.com.cn
  ## Support
- 
+
  Contact:<br>
 -[asciisd.com](https://asciisd.com)<br>
 +[optimacloud.com](https://optimacloud.com)<br>
  aemad@asciisd.com<br>
  +2-010-1144-1444
- 
+
 @@ -295,7 +294,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
- 
+
  ## Contributing
- 
+
 -Please see [CONTRIBUTING](https://github.com/asciisd/.github/blob/main/CONTRIBUTING.md) for details.
 +Please see [CONTRIBUTING](https://github.com/optimacloud/.github/blob/main/CONTRIBUTING.md) for details.
- 
+
  ## Security Vulnerabilities
- 
+
 diff --git a/composer.json b/composer.json
 index 45fbeaf..3ca0d45 100644
 --- a/composer.json
@@ -241,7 +241,7 @@ index 45fbeaf..3ca0d45 100644
 +        },
 +        {
 +            "name": "Lee",
-+            "email": "lee@optimacloudtechnology.com",
++            "email": "lee@optimacloud.pro",
 +            "role": "Developer"
          }
      ],
@@ -284,14 +284,14 @@ index a81f836..44d49a8 100644
  <?php
 -// config for Asciisd/Zoho
 +// config for Optimacloud/Zoho
- 
+
  return [
      /*
 @@ -15,7 +15,7 @@ return [
- 
+
      /*
      |--------------------------------------------------------------------------
--    | Accounts url 
+-    | Accounts url
 +    | Accounts url
      |--------------------------------------------------------------------------
      |
@@ -300,7 +300,7 @@ index a81f836..44d49a8 100644
      |
      */
      'api_base_url' => env('ZOHO_API_BASE_URL', "www.zohoapis.com"),
--    
+-
 +
      /*
      |--------------------------------------------------------------------------
@@ -335,9 +335,9 @@ index 87985f7..4d601fe 100644
 --- a/routes/web.php
 +++ b/routes/web.php
 @@ -2,4 +2,4 @@
- 
+
  use Illuminate\Support\Facades\Route;
- 
+
 -Route::get('oauth2callback', [\Asciisd\Zoho\Http\Controllers\ZohoController::class, 'oauth2callback']);
 +Route::get('oauth2callback', [\Optimacloud\Zoho\Http\Controllers\ZohoController::class, 'oauth2callback']);
 diff --git a/src/Commands/ZohoAuthentication.php b/src/Commands/ZohoAuthentication.php
@@ -346,18 +346,18 @@ index 214cc3a..5c7d0e4 100644
 +++ b/src/Commands/ZohoAuthentication.php
 @@ -1,7 +1,7 @@
  <?php
- 
- 
+
+
 -namespace Asciisd\Zoho\Commands;
 +namespace Optimacloud\Zoho\Commands;
- 
- 
+
+
  use Illuminate\Console\Command;
 @@ -43,7 +43,7 @@ class ZohoAuthentication extends Command
- 
+
          $redirect_url = "{$accounts_url}/oauth/v2/auth?scope={$scope}&prompt={$prompt}&client_id={$client_id}&response_type={$response_type}&access_type={$access_type}&redirect_uri={$client_domain}";
  //{{accounts_url}}/oauth/v2/token?grant_type=authorization_code&client_id={{client_id}}&client_secret={{client_secret}}&redirect_uri={{redirect_uri}}&code=1000.2ba87e1464afc3ba9042acb90f4c196d.971662a877b2aa7470642ce244c41055
--        
+-
 +
          $this->info('Copy the following url, past on browser and hit return.');
          $this->line($redirect_url);
@@ -368,11 +368,11 @@ index 30f7dc7..27a090a 100644
 +++ b/src/Commands/ZohoInstallCommand.php
 @@ -1,7 +1,7 @@
  <?php
- 
- 
+
+
 -namespace Asciisd\Zoho\Commands;
 +namespace Optimacloud\Zoho\Commands;
- 
+
  use Illuminate\Console\Command;
  use Illuminate\Support\Facades\Storage;
 diff --git a/src/Commands/ZohoSetupCommand.php b/src/Commands/ZohoSetupCommand.php
@@ -381,28 +381,28 @@ index 7f35ec1..fcf602f 100644
 +++ b/src/Commands/ZohoSetupCommand.php
 @@ -1,8 +1,8 @@
  <?php
- 
+
 -namespace Asciisd\Zoho\Commands;
 +namespace Optimacloud\Zoho\Commands;
- 
+
 -use Asciisd\Zoho\Zoho;
 +use Optimacloud\Zoho\Zoho;
  use com\zoho\crm\api\exception\SDKException;
  use Illuminate\Console\Command;
- 
+
 diff --git a/src/Concerns/CriteriaBuilder.php b/src/Concerns/CriteriaBuilder.php
 index a20fbfb..0fdb1d3 100644
 --- a/src/Concerns/CriteriaBuilder.php
 +++ b/src/Concerns/CriteriaBuilder.php
 @@ -1,8 +1,8 @@
  <?php
- 
+
 -namespace Asciisd\Zoho\Concerns;
 +namespace Optimacloud\Zoho\Concerns;
- 
+
 -use Asciisd\Zoho\ZohoManager;
 +use Optimacloud\Zoho\ZohoManager;
- 
+
  trait CriteriaBuilder
  {
 diff --git a/src/Concerns/ManagesActions.php b/src/Concerns/ManagesActions.php
@@ -411,10 +411,10 @@ index 3e79a45..63b504b 100644
 +++ b/src/Concerns/ManagesActions.php
 @@ -1,6 +1,6 @@
  <?php
- 
+
 -namespace Asciisd\Zoho\Concerns;
 +namespace Optimacloud\Zoho\Concerns;
- 
+
  use com\zoho\crm\api\ParameterMap;
  use com\zoho\crm\api\record\Record;
 diff --git a/src/Concerns/ManagesBulkActions.php b/src/Concerns/ManagesBulkActions.php
@@ -423,10 +423,10 @@ index d738338..6b120b2 100644
 +++ b/src/Concerns/ManagesBulkActions.php
 @@ -1,6 +1,6 @@
  <?php
- 
+
 -namespace Asciisd\Zoho\Concerns;
 +namespace Optimacloud\Zoho\Concerns;
- 
+
  use com\zoho\crm\api\modules\APIException;
  use com\zoho\crm\api\record\ActionWrapper;
 diff --git a/src/Concerns/ManagesModules.php b/src/Concerns/ManagesModules.php
@@ -435,10 +435,10 @@ index d3a2602..74f2c1f 100644
 +++ b/src/Concerns/ManagesModules.php
 @@ -1,6 +1,6 @@
  <?php
- 
+
 -namespace Asciisd\Zoho\Concerns;
 +namespace Optimacloud\Zoho\Concerns;
- 
+
  use com\zoho\crm\api\modules\APIException;
  use com\zoho\crm\api\modules\ModulesOperations;
 diff --git a/src/Concerns/ManagesRecords.php b/src/Concerns/ManagesRecords.php
@@ -447,10 +447,10 @@ index 1e73a84..743822f 100644
 +++ b/src/Concerns/ManagesRecords.php
 @@ -1,6 +1,6 @@
  <?php
- 
+
 -namespace Asciisd\Zoho\Concerns;
 +namespace Optimacloud\Zoho\Concerns;
- 
+
  use com\zoho\crm\api\modules\APIException;
  use com\zoho\crm\api\ParameterMap;
 diff --git a/src/Concerns/ManagesTags.php b/src/Concerns/ManagesTags.php
@@ -459,10 +459,10 @@ index 98edb65..0ac88e7 100644
 +++ b/src/Concerns/ManagesTags.php
 @@ -1,6 +1,6 @@
  <?php
- 
+
 -namespace Asciisd\Zoho\Concerns;
 +namespace Optimacloud\Zoho\Concerns;
- 
+
  use com\zoho\crm\api\exception\SDKException;
  use com\zoho\crm\api\modules\APIException;
 diff --git a/src/Contracts/Repositories/ZohoableRepository.php b/src/Contracts/Repositories/ZohoableRepository.php
@@ -471,10 +471,10 @@ index 8f1183e..293bc17 100644
 +++ b/src/Contracts/Repositories/ZohoableRepository.php
 @@ -1,6 +1,6 @@
  <?php
- 
+
 -namespace Asciisd\Zoho\Contracts\Repositories;
 +namespace Optimacloud\Zoho\Contracts\Repositories;
- 
+
  interface ZohoableRepository
  {
 diff --git a/src/Exceptions/InvalidLead.php b/src/Exceptions/InvalidLead.php
@@ -483,10 +483,10 @@ index 85d7e36..a7cc711 100644
 +++ b/src/Exceptions/InvalidLead.php
 @@ -1,6 +1,6 @@
  <?php
- 
+
 -namespace Asciisd\Zoho\Exceptions;
 +namespace Optimacloud\Zoho\Exceptions;
- 
+
  use Exception;
  use Illuminate\Database\Eloquent\Model;
 diff --git a/src/Exceptions/InvalidZohoable.php b/src/Exceptions/InvalidZohoable.php
@@ -495,10 +495,10 @@ index c87437a..e2d5496 100644
 +++ b/src/Exceptions/InvalidZohoable.php
 @@ -1,6 +1,6 @@
  <?php
- 
+
 -namespace Asciisd\Zoho\Exceptions;
 +namespace Optimacloud\Zoho\Exceptions;
- 
+
  use Exception;
  use Illuminate\Database\Eloquent\Model;
 diff --git a/src/Http/Controllers/ZohoController.php b/src/Http/Controllers/ZohoController.php
@@ -507,39 +507,39 @@ index 4e8f891..e39af32 100644
 +++ b/src/Http/Controllers/ZohoController.php
 @@ -1,9 +1,9 @@
  <?php
- 
+
 -namespace Asciisd\Zoho\Http\Controllers;
 +namespace Optimacloud\Zoho\Http\Controllers;
- 
+
 -use Asciisd\Zoho\Http\Requests\ZohoRedirectRequest;
 -use Asciisd\Zoho\Zoho;
 +use Optimacloud\Zoho\Http\Requests\ZohoRedirectRequest;
 +use Optimacloud\Zoho\Zoho;
  use com\zoho\crm\api\exception\SDKException;
  use Illuminate\Routing\Controller;
- 
+
 diff --git a/src/Http/Requests/ZohoRedirectRequest.php b/src/Http/Requests/ZohoRedirectRequest.php
 index 35be1b0..fc86799 100644
 --- a/src/Http/Requests/ZohoRedirectRequest.php
 +++ b/src/Http/Requests/ZohoRedirectRequest.php
 @@ -1,6 +1,6 @@
  <?php
- 
+
 -namespace Asciisd\Zoho\Http\Requests;
 +namespace Optimacloud\Zoho\Http\Requests;
- 
+
  use Illuminate\Foundation\Http\FormRequest;
- 
+
 diff --git a/src/Models/Zoho.php b/src/Models/Zoho.php
 index 5a74adb..d1da8fe 100644
 --- a/src/Models/Zoho.php
 +++ b/src/Models/Zoho.php
 @@ -1,6 +1,6 @@
  <?php
- 
+
 -namespace Asciisd\Zoho\Models;
 +namespace Optimacloud\Zoho\Models;
- 
+
  use Illuminate\Database\Eloquent\Model;
  use Illuminate\Database\Eloquent\Relations\MorphTo;
 diff --git a/src/Models/Zohoable.php b/src/Models/Zohoable.php
@@ -548,10 +548,10 @@ index a264159..f2b10ca 100644
 +++ b/src/Models/Zohoable.php
 @@ -1,10 +1,10 @@
  <?php
- 
+
 -namespace Asciisd\Zoho\Models;
 +namespace Optimacloud\Zoho\Models;
- 
+
 -use Asciisd\Zoho\Contracts\Repositories\ZohoableRepository;
 -use Asciisd\Zoho\Traits\Zohoable as ZohoableModel;
 -use Asciisd\Zoho\ZohoManager;
@@ -559,7 +559,7 @@ index a264159..f2b10ca 100644
 +use Optimacloud\Zoho\Traits\Zohoable as ZohoableModel;
 +use Optimacloud\Zoho\ZohoManager;
  use Illuminate\Database\Eloquent\Model;
- 
+
  abstract class Zohoable extends Model implements ZohoableRepository
 diff --git a/src/Traits/Zohoable.php b/src/Traits/Zohoable.php
 index 14002a4..74ce2fd 100644
@@ -567,10 +567,10 @@ index 14002a4..74ce2fd 100644
 +++ b/src/Traits/Zohoable.php
 @@ -1,10 +1,10 @@
  <?php
- 
+
 -namespace Asciisd\Zoho\Traits;
 +namespace Optimacloud\Zoho\Traits;
- 
+
 -use Asciisd\Zoho\Exceptions\InvalidZohoable;
 -use Asciisd\Zoho\Models\Zoho as ZohoModel;
 -use Asciisd\Zoho\ZohoManager;
@@ -586,10 +586,10 @@ index 14311ae..df3fb9c 100755
 +++ b/src/Zoho.php
 @@ -1,6 +1,6 @@
  <?php
- 
+
 -namespace Asciisd\Zoho;
 +namespace Optimacloud\Zoho;
- 
+
  use com\zoho\api\authenticator\OAuthBuilder;
  use com\zoho\api\authenticator\store\FileStore;
 diff --git a/src/ZohoManager.php b/src/ZohoManager.php
@@ -598,10 +598,10 @@ index afe5e09..9cf96cf 100644
 +++ b/src/ZohoManager.php
 @@ -1,13 +1,13 @@
  <?php
- 
+
 -namespace Asciisd\Zoho;
 +namespace Optimacloud\Zoho;
- 
+
 -use Asciisd\Zoho\Concerns\CriteriaBuilder;
 -use Asciisd\Zoho\Concerns\ManagesActions;
 -use Asciisd\Zoho\Concerns\ManagesBulkActions;
@@ -615,7 +615,7 @@ index afe5e09..9cf96cf 100644
 +use Optimacloud\Zoho\Concerns\ManagesRecords;
 +use Optimacloud\Zoho\Concerns\ManagesTags;
  use com\zoho\crm\api\exception\SDKException;
- 
+
  class ZohoManager
 diff --git a/src/ZohoServiceProvider.php b/src/ZohoServiceProvider.php
 index 227d434..99622d1 100644
@@ -623,10 +623,10 @@ index 227d434..99622d1 100644
 +++ b/src/ZohoServiceProvider.php
 @@ -1,10 +1,10 @@
  <?php
- 
+
 -namespace Asciisd\Zoho;
 +namespace Optimacloud\Zoho;
- 
+
 -use Asciisd\Zoho\Commands\ZohoAuthentication;
 -use Asciisd\Zoho\Commands\ZohoInstallCommand;
 -use Asciisd\Zoho\Commands\ZohoSetupCommand;
@@ -635,7 +635,7 @@ index 227d434..99622d1 100644
 +use Optimacloud\Zoho\Commands\ZohoSetupCommand;
  use Spatie\LaravelPackageTools\Package;
  use Spatie\LaravelPackageTools\PackageServiceProvider;
- 
+
 @@ -18,7 +18,7 @@ class ZohoServiceProvider extends PackageServiceProvider
           * More info: https://github.com/spatie/laravel-package-tools
           */
@@ -651,10 +651,10 @@ index dd1104b..d6f8855 100644
 +++ b/tests/Fixture/Models/User.php
 @@ -1,11 +1,11 @@
  <?php
- 
+
 -namespace Asciisd\Zoho\Tests\Fixture\Models;
 +namespace Optimacloud\Zoho\Tests\Fixture\Models;
- 
+
 -use Asciisd\Zoho\ZohoManager;
 -use Asciisd\Zoho\Traits\Zohoable;
 -use Asciisd\Zoho\Models\Zohoable as ZohoableModel;
@@ -663,7 +663,7 @@ index dd1104b..d6f8855 100644
 +use Optimacloud\Zoho\Traits\Zohoable;
 +use Optimacloud\Zoho\Models\Zohoable as ZohoableModel;
 +use Optimacloud\Zoho\Contracts\Repositories\ZohoableRepository;
- 
+
  class User extends ZohoableModel implements ZohoableRepository
  {
 diff --git a/tests/Integration/IntegrationTestCase.php b/tests/Integration/IntegrationTestCase.php
@@ -672,15 +672,15 @@ index b355ea8..8cd2bd6 100644
 +++ b/tests/Integration/IntegrationTestCase.php
 @@ -1,9 +1,9 @@
  <?php
- 
+
 -namespace Asciisd\Zoho\Tests\Integration;
 +namespace Optimacloud\Zoho\Tests\Integration;
- 
+
 -use Asciisd\Zoho\Tests\TestCase;
 -use Asciisd\Zoho\Tests\Fixture\Models\User;
 +use Optimacloud\Zoho\Tests\TestCase;
 +use Optimacloud\Zoho\Tests\Fixture\Models\User;
- 
+
  abstract class IntegrationTestCase extends TestCase
  {
 @@ -17,7 +17,7 @@ abstract class IntegrationTestCase extends TestCase
@@ -698,10 +698,10 @@ index a71f65c..e7bbcb4 100644
 +++ b/tests/Integration/ZohoModuleTest.php
 @@ -1,8 +1,8 @@
  <?php
- 
+
 -namespace Asciisd\Zoho\Tests\Integration;
 +namespace Optimacloud\Zoho\Tests\Integration;
- 
+
 -use Asciisd\Zoho\ZohoManager;
 +use Optimacloud\Zoho\ZohoManager;
  use com\zoho\crm\api\record\Leads;
@@ -715,7 +715,7 @@ index a71f65c..e7bbcb4 100644
 +            'Email'      => 'can_create@optimacloud.com',
              'Phone'      => '555555555552',
          ]);
- 
+
 @@ -115,7 +115,7 @@ class ZohoModuleTest extends IntegrationTestCase
          $records = ZohoManager::make(self::TESTING_MODULE)->create([
              'First_Name' => 'Can',
@@ -724,7 +724,7 @@ index a71f65c..e7bbcb4 100644
 +            'Email'      => 'can_update@optimacloud.com',
              'Phone'      => '555555555552',
          ]);
- 
+
 @@ -145,7 +145,7 @@ class ZohoModuleTest extends IntegrationTestCase
          $records = ZohoManager::make(self::TESTING_MODULE)->create([
              'First_Name' => 'Can',
@@ -733,21 +733,21 @@ index a71f65c..e7bbcb4 100644
 +            'Email'      => 'can_delete@optimacloud.com',
              'Phone'      => '555555555553',
          ]);
- 
+
 diff --git a/tests/Integration/ZohoUserTest.php b/tests/Integration/ZohoUserTest.php
 index 54ca01c..36a6753 100644
 --- a/tests/Integration/ZohoUserTest.php
 +++ b/tests/Integration/ZohoUserTest.php
 @@ -1,8 +1,8 @@
  <?php
- 
+
 -namespace Asciisd\Zoho\Tests\Integration;
 +namespace Optimacloud\Zoho\Tests\Integration;
- 
+
 -use Asciisd\Zoho\ZohoManager;
 +use Optimacloud\Zoho\ZohoManager;
  use com\zoho\crm\api\record\SuccessResponse;
- 
+
  class ZohoUserTest extends IntegrationTestCase
 diff --git a/tests/TestCase.php b/tests/TestCase.php
 index 581e187..f4ad8df 100644
@@ -755,35 +755,35 @@ index 581e187..f4ad8df 100644
 +++ b/tests/TestCase.php
 @@ -1,10 +1,10 @@
  <?php
- 
+
 -namespace Asciisd\Zoho\Tests;
 +namespace Optimacloud\Zoho\Tests;
- 
+
  use Illuminate\Database\Eloquent\Factories\Factory;
  use Orchestra\Testbench\TestCase as OrchestraTestCase;
 -use Asciisd\Zoho\ZohoServiceProvider;
 +use Optimacloud\Zoho\ZohoServiceProvider;
- 
+
  class TestCase extends OrchestraTestCase
  {
 @@ -13,7 +13,7 @@ class TestCase extends OrchestraTestCase
          parent::setUp();
- 
+
          Factory::guessFactoryNamesUsing(
 -            fn (string $modelName) => 'Asciisd\\Zoho\\Database\\Factories\\'.class_basename($modelName).'Factory'
 +            fn (string $modelName) => 'Optimacloud\\Zoho\\Database\\Factories\\'.class_basename($modelName).'Factory'
          );
      }
- 
+
 @@ -31,7 +31,7 @@ class TestCase extends OrchestraTestCase
          config()->set('database.default', 'testing');
- 
+
          /*
 -        $migration = include __DIR__.'/../database/migrations/create_zoho-v3_table.php.stub';
 +        $migration = include __DIR__.'/../database/migrations/create_zoho-laravel_table.php.stub';
          $migration->up();
          */
      }
--- 
+--
 2.41.0
 
