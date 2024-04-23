@@ -67,6 +67,6 @@ class ZohoTokenService
     protected function getRemotePath()
     {
         // Assuming the path on the remote disk is the same as the local filename
-        return config('zoho.token_persistence_path');
+        return config('app.env').'/'.config('zoho.token_persistence_path');
     }
 }
