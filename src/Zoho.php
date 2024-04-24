@@ -77,7 +77,7 @@ class Zoho
     {
         $environment = self::$environment ?: self::getDataCenterEnvironment();
         $resourcePath = config('zoho.resourcePath');
-        $token_store = new FileStore(config('zoho.token_persistence_path'));
+        $token_store = new FileStore(Storage::disk('local')->path(config('zoho.token_persistence_path')));
         $logger = (new LogBuilder())->level(Levels::ALL)
             ->filePath(Storage::disk('local')->path(config('zoho.application_log_file_path')))
             ->build();
