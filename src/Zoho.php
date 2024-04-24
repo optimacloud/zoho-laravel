@@ -16,6 +16,7 @@ use com\zoho\crm\api\exception\SDKException;
 use com\zoho\crm\api\InitializeBuilder;
 use com\zoho\crm\api\SDKConfigBuilder;
 use com\zoho\crm\api\UserSignature;
+use Illuminate\Support\Facades\Storage;
 
 class Zoho
 {
@@ -78,7 +79,7 @@ class Zoho
         $resourcePath = config('zoho.resourcePath');
         $token_store = new FileStore(config('zoho.token_persistence_path'));
         $logger = (new LogBuilder())->level(Levels::ALL)
-            ->filePath(config('zoho.application_log_file_path'))
+            ->filePath(Storage::disk('local')->path(config('zoho.application_log_file_path')))
             ->build();
 
         switch (config('zoho.auth_flow_type')) {

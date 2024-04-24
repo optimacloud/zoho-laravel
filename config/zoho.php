@@ -101,7 +101,7 @@ return [
     | inside the project.
     |
     */
-    'application_log_file_path' => 'app/zoho/oauth/logs/ZCRMClientLibrary.log',
+        'application_log_file_path' => 'zoho/oauth/logs/ZCRMClientLibrary.log',
 
     /*
     |--------------------------------------------------------------------------
@@ -114,7 +114,7 @@ return [
     | the file here
     |
     */
-    'token_persistence_path' => 'app/zoho/oauth/tokens/zcrm_oauthtokens.txt',
+    'token_persistence_path' => 'zoho/oauth/tokens/zcrm_oauthtokens.txt',
 
 
     /*

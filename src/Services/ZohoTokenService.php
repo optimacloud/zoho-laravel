@@ -11,7 +11,7 @@ class ZohoTokenService
 
     public function __construct()
     {
-        $this->localPath = storage_path(config('zoho.token_persistence_path'));
+        $this->localPath = Storage::disk('local')->path(config('zoho.token_persistence_path'));
         $this->disk = config('zoho.disk', 'local');
     }
 
@@ -67,6 +67,6 @@ class ZohoTokenService
     protected function getRemotePath()
     {
         // Assuming the path on the remote disk is the same as the local filename
-        return config('app.env').'/'.config('zoho.token_persistence_path');
+        return config('app.env').DIRECTORY_SEPARATOR.config('zoho.token_persistence_path');
     }
 }
